@@ -1,0 +1,26 @@
+{
+  "name": "kiana",
+  "version": "1.0.0",
+  "description": "Discord bot",
+  "main": "dist/kiana.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc --skipLibCheck && node ."
+  },
+  "author": "Zarr",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.7.0",
+    "@sapphire/decorators": "^6.0.3",
+    "@sapphire/framework": "^5.0.2",
+    "@sapphire/plugin-i18next": "^7.0.1",
+    "@sapphire/plugin-subcommands": "^6.0.1",
+    "@sapphire/plugin-utilities-store": "^2.0.1",
+    "@sapphire/time-utilities": "^1.7.11",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1",
+    "mongodb": "^6.3.0",
+    "prisma": "^5.7.0"
+  },
+  "devDependencies": {}
+}

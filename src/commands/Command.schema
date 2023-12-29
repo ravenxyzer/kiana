@@ -1,0 +1,18 @@
+import { Command } from "@sapphire/framework";
+import { ApplyOptions } from "@sapphire/decorators";
+import { InteractionResponse, Message } from "discord.js";
+
+@ApplyOptions<Command.Options>({
+    name: "",
+    aliases: [""],
+    description: "",
+})
+export class CommandName extends Command {
+    public override async messageRun(message: Message): Promise<Message> {
+        return;
+    }
+
+    public override async chatInputRun(interaction: Command.ChatInputCommandInteraction): Promise<InteractionResponse> {
+        return;
+    }
+}
