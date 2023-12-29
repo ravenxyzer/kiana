@@ -12,6 +12,8 @@ import { EmbedBuilder } from "../../library";
 })
 export class SendcodeCommand extends Command {
     public override async messageRun(message: Message, args: Args): Promise<Message> {
+        await message.delete();
+
         const game: string = (await args.pick("string")).toLowerCase();
         const codes: string = (await args.rest("string")).toUpperCase();
         const codesToArray = codes.split(" ");
