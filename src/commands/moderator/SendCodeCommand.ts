@@ -13,7 +13,6 @@ import { EmbedBuilder } from "../../library";
 export class SendcodeCommand extends Command {
     public override async messageRun(message: Message, args: Args): Promise<Message> {
         await message.delete();
-
         const game: string = (await args.pick("string")).toLowerCase();
         const codes: string = (await args.rest("string")).toUpperCase();
         const codesToArray = codes.split(" ");
@@ -30,7 +29,7 @@ export class SendcodeCommand extends Command {
             if (game === "hi") {
                 embed.addFields([{ name: "Codes", value: codesToArray.map((code) => `- \`${code}\``).join("\n") }]);
                 await message.channel.send({ content: `${roles[game]} ada kode baru nih!`, embeds: [embed] }).then(async () => {
-                    await message.channel.send("## `📱`  ・ Mobile Users\nKalian bisa salin kode-kode di bawah ini ya!");
+                    await message.channel.send("## `📱`  Mobile Users\nKalian bisa salin kode-kode di bawah ini ya!");
 
                     for (const code of codesToArray) {
                         await message.channel.send(`- ${code}`);
@@ -55,9 +54,9 @@ export class SendcodeCommand extends Command {
             return;
         }
 
-        return await message.reply({
+        return await message.channel.send({
             content:
-                "Perintah Gagal! Harap masukkan kode game yang tersedia.\n- **HI** : Honkai Impact\n- **HSR** : Honkai: Star Rail\n- **GI** : Genshin Impact\ncontoh : `k!sc hsr code1 code2 code3 dst`",
+                "Perintah gagal! Harap masukkan kode game yang tersedia.\n- **HI** : Honkai Impact\n- **HSR** : Honkai: Star Rail\n- **GI** : Genshin Impact\nContoh : `k!sc hsr code1 code2 code3 dst`",
         });
     }
 

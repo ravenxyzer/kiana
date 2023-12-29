@@ -37,6 +37,7 @@ let SendcodeCommand = class SendcodeCommand extends framework_1.Command {
     }
     messageRun(message, args) {
         return __awaiter(this, void 0, void 0, function* () {
+            yield message.delete();
             const game = (yield args.pick("string")).toLowerCase();
             const codes = (yield args.rest("string")).toUpperCase();
             const codesToArray = codes.split(" ");
@@ -50,7 +51,7 @@ let SendcodeCommand = class SendcodeCommand extends framework_1.Command {
                 if (game === "hi") {
                     embed.addFields([{ name: "Codes", value: codesToArray.map((code) => `- \`${code}\``).join("\n") }]);
                     yield message.channel.send({ content: `${roles[game]} ada kode baru nih!`, embeds: [embed] }).then(() => __awaiter(this, void 0, void 0, function* () {
-                        yield message.channel.send("## `📱`  ・ Mobile Users\nKalian bisa salin kode-kode di bawah ini ya!");
+                        yield message.channel.send("## `📱`  Mobile Users\nKalian bisa salin kode-kode di bawah ini ya!");
                         for (const code of codesToArray) {
                             yield message.channel.send(`- ${code}`);
                         }
@@ -68,8 +69,8 @@ let SendcodeCommand = class SendcodeCommand extends framework_1.Command {
                 }));
                 return;
             }
-            return yield message.reply({
-                content: "Perintah Gagal! Harap masukkan kode game yang tersedia.\n- **HI** : Honkai Impact\n- **HSR** : Honkai: Star Rail\n- **GI** : Genshin Impact\ncontoh : `k!sc hsr code1 code2 code3 dst`",
+            return yield message.channel.send({
+                content: "Perintah Gagal! Harap masukkan kode game yang tersedia.\n- **HI** : Honkai Impact\n- **HSR** : Honkai: Star Rail\n- **GI** : Genshin Impact\nContoh : `k!sc hsr code1 code2 code3 dst`",
             });
         });
     }
@@ -78,7 +79,7 @@ SendcodeCommand = __decorate([
     (0, decorators_1.ApplyOptions)({
         name: "sendcode",
         aliases: ["sc"],
-        description: "Send Hoyoverse's Games Redeemable Code.",
+        description: "Send Hoyoverse's Game Redeemable Codes.",
         preconditions: ["ModeratorOnly"],
     })
 ], SendcodeCommand);
